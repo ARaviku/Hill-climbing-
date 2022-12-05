@@ -4,11 +4,8 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-// add the include for climber.h
-// --- Your code here
-#include "climber.h"
 
-// ---
+#include "climber.h"
 
 bool operator==(Coordinate const &c1, Coordinate const &c2)
 {
@@ -62,8 +59,6 @@ void read_input(std::map<Coordinate, int> &m, Coordinate &start, std::string con
 void climber_algorithm(std::map<Coordinate, int> const &m, Coordinate const &start, std::string const &outfilename)
 {
     std::ofstream outfile(outfilename);
-
-    // These print statements are for your debugging convenience. The autograder will only look at the output file.
     std::cout << "height at start: " << m.at(start) << std::endl;
 
     Coordinate current_xy = start;
@@ -78,24 +73,15 @@ void climber_algorithm(std::map<Coordinate, int> const &m, Coordinate const &sta
     n4.x = 0;
     n4.y = -1;
 
-    // 'offsets' should contain the changes in XY coordinates, in the order specified in the assigmnet doc.
-    // Note that the Coordinate struct has operator+ defined on it, which lets you add two Coordiantes together
     std::vector<Coordinate> offsets{
         // --- Your code here
         n1, n2, n3, n4
         // ---
     };
 
-    // We use a while true here, then break when we detect the climber has reached a local maximum
     while (true)
     {
         outfile << current_xy.x << " " << current_xy.y << " " << current_height << std::endl;
-        // Consider creating variables to keep track of the next coordinate and the height at the next coordinate.
-        // You should iterate over the valid neighbors and update these variables each time we find a new-best neighbor.
-        // A valid neighor is one that is in-bounds, has height > the current height but <= the current height + 2.
-        // If the current xy is the same as the next xy that means we've hit our local maxiumum and we should stop.
-
-        // --- Your code here
         Coordinate next;
         int height_next = current_height;
         std::vector<Coordinate> next_v;
@@ -115,7 +101,6 @@ void climber_algorithm(std::map<Coordinate, int> const &m, Coordinate const &sta
             height_vec.push_back(m.at(next_v[i]));
         }
 
-        // std::vector<int> height_vec1;
         for (int i = 0; i < height_vec.size(); i++)
         {
             if (current_height < height_vec[i])
