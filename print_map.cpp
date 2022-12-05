@@ -10,14 +10,11 @@
 
 void printmap(const std::map<Coordinate, int> &m)
 {
-    // print each entry in the map using the format "{x},{y} val: {value}" where {x} means print the value of the variable x
-    // --- Your code here
 
     for (auto const &l: m){
         std::cout << l.first.x << "," << l.first.y <<"val: " << l.second <<std::endl;
     }
 
-    // ---
 }
 
 
